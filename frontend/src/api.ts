@@ -54,3 +54,26 @@ export const getRaceResults = (season: number, round: number) =>
 
 export const getLapTimes = (season: number, round: number, driver: string) =>
   fetchJson<LapTime[]>(`/races/${season}/${round}/laps?driver=${driver}`)
+
+// --- Prédiction ---
+
+export interface PredictionInput {
+  grid: number
+  driverId: number
+  raceId: number
+}
+
+export interface PredictionOutput {
+  predicted_position: number
+  input: PredictionInput
+}
+
+export const postPredict = async (data: PredictionInput): Promise<PredictionOutput> => {
+  const res = await fetch(`${BASE_URL}/api/predict`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw new Error(`API error ${res.status}: /api/predict`)
+  return res.json()
+}
