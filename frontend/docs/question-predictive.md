@@ -6,7 +6,7 @@
 ## Variable cible (ce qu'on prédit)
 `positionOrder` — la position d'arrivée du pilote
 
-## Variables explicatives (ce qu'on donne au modèle)
+## Variables explicatives
 - Position sur la grille de départ
 - Identité du pilote
 - Circuit / Grand Prix
