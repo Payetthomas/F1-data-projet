@@ -13,3 +13,5 @@ frontend/dist/
 # Divers
 .env
 .DS_Store
+backend/venv/
+backend/data/lap_times.csv
