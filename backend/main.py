@@ -31,7 +31,8 @@ df_constructors = pd.read_csv(os.path.join(DATA_DIR, "constructors.csv"))
 df_constructor_standings = pd.read_csv(os.path.join(DATA_DIR, "constructor_standings.csv"))
 
 # --- Chargement du modèle et des features ---
-MODEL_PATH = os.path.join(DATA_DIR, "model.pkl")
+# MODEL_PATH = os.path.join(DATA_DIR, "model.pkl")
+MODEL_PATH = os.path.join(DATA_DIR, "model.joblib")
 FEATURES_PATH = os.path.join(DATA_DIR, "model_features.json")
 CALENDAR_PATH = os.path.join(DATA_DIR, "calendar_2026.json")
 
