@@ -1,0 +1,19 @@
+[
+  {"round": 6,  "name": "Monaco Grand Prix",      "circuit": "Circuit de Monaco",          "date": "2026-06-07", "lat": 43.7347, "lng": 7.4205,   "circuitId": 6},
+  {"round": 7,  "name": "Spanish Grand Prix",     "circuit": "Circuit de Barcelona-Catalunya","date": "2026-06-14", "lat": 41.5700, "lng": 2.2611,   "circuitId": 4},
+  {"round": 8,  "name": "Austrian Grand Prix",    "circuit": "Red Bull Ring",               "date": "2026-06-28", "lat": 47.2197, "lng": 14.7647,  "circuitId": 70},
+  {"round": 9,  "name": "British Grand Prix",     "circuit": "Silverstone",                 "date": "2026-07-05", "lat": 52.0786, "lng": -1.0169,  "circuitId": 9},
+  {"round": 10, "name": "Belgian Grand Prix",     "circuit": "Circuit de Spa-Francorchamps","date": "2026-07-19", "lat": 50.4372, "lng": 5.9714,   "circuitId": 13},
+  {"round": 11, "name": "Hungarian Grand Prix",   "circuit": "Hungaroring",                 "date": "2026-07-26", "lat": 47.5789, "lng": 19.2486,  "circuitId": 11},
+  {"round": 12, "name": "Dutch Grand Prix",       "circuit": "Circuit Zandvoort",           "date": "2026-08-23", "lat": 52.3888, "lng": 4.5409,   "circuitId": 39},
+  {"round": 13, "name": "Italian Grand Prix",     "circuit": "Autodromo Nazionale Monza",   "date": "2026-09-06", "lat": 45.6156, "lng": 9.2811,   "circuitId": 14},
+  {"round": 14, "name": "Madrid Grand Prix",      "circuit": "Circuito de Madrid",          "date": "2026-09-13", "lat": 40.4168, "lng": -3.7038,  "circuitId": 4},
+  {"round": 15, "name": "Azerbaijan Grand Prix",  "circuit": "Baku City Circuit",           "date": "2026-09-27", "lat": 40.3725, "lng": 49.8533,  "circuitId": 73},
+  {"round": 16, "name": "Singapore Grand Prix",   "circuit": "Marina Bay Street Circuit",   "date": "2026-10-11", "lat": 1.2914,  "lng": 103.8640, "circuitId": 60},
+  {"round": 17, "name": "United States Grand Prix","circuit": "Circuit of the Americas",    "date": "2026-10-25", "lat": 30.1328, "lng": -97.6411, "circuitId": 69},
+  {"round": 18, "name": "Mexico Grand Prix",      "circuit": "Autodromo Hermanos Rodriguez","date": "2026-11-01", "lat": 19.4042, "lng": -99.0907, "circuitId": 32},
+  {"round": 19, "name": "Brazilian Grand Prix",   "circuit": "Autodromo Jose Carlos Pace",  "date": "2026-11-08", "lat": -23.7036,"lng": -46.6997, "circuitId": 18},
+  {"round": 20, "name": "Las Vegas Grand Prix",   "circuit": "Las Vegas Strip Circuit",     "date": "2026-11-21", "lat": 36.1699, "lng": -115.1398,"circuitId": 80},
+  {"round": 21, "name": "Qatar Grand Prix",       "circuit": "Lusail International Circuit","date": "2026-11-29", "lat": 25.4900, "lng": 51.4542,  "circuitId": 77},
+  {"round": 22, "name": "Abu Dhabi Grand Prix",   "circuit": "Yas Marina Circuit",          "date": "2026-12-06", "lat": 24.4672, "lng": 54.6031,  "circuitId": 24}
+]

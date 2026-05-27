@@ -4,6 +4,9 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import os
+import json as json_lib
+import requests
+
 
 app = FastAPI(title="F1 Predictor API")
 
@@ -26,15 +29,14 @@ df_constructors = pd.read_csv(os.path.join(DATA_DIR, "constructors.csv"))
 df_constructor_standings = pd.read_csv(os.path.join(DATA_DIR, "constructor_standings.csv"))
 
 # --- Chargement du modèle et des features ---
-import json
-
 MODEL_PATH = os.path.join(DATA_DIR, "model.pkl")
 FEATURES_PATH = os.path.join(DATA_DIR, "model_features.json")
+CALENDAR_PATH = os.path.join(DATA_DIR, "calendar_2026.json")
 
 model = joblib.load(MODEL_PATH) if os.path.exists(MODEL_PATH) else None
 
 with open(FEATURES_PATH) as f:
-    MODEL_FEATURES = json.load(f)
+    MODEL_FEATURES = json_lib.load(f)
 
 print(f"✅ Modèle chargé, features : {MODEL_FEATURES}")
 
@@ -175,6 +177,50 @@ def predict(data: PredictionInput):
         "predicted_position": round(float(prediction[0]), 1),
         "input": data.model_dump()
     }
+
+
+@app.get("/api/weather-forecast")
+def get_weather_forecast(lat: float, lng: float, date: str):
+    """
+    Récupère la météo prévue via Open-Meteo forecast
+    pour une date et des coordonnées GPS données
+    """
+    url = "https://api.open-meteo.com/v1/forecast"
+    params = {
+        "latitude": lat,
+        "longitude": lng,
+        "daily": "temperature_2m_mean,precipitation_sum,windspeed_10m_max",
+        "start_date": date,
+        "end_date": date,
+        "timezone": "auto"
+    }
+    try:
+        res = requests.get(url, params=params, timeout=10)
+        data = res.json()
+        daily = data.get("daily", {})
+        return {
+            "temp_mean":     daily.get("temperature_2m_mean", [None])[0],
+            "precipitation": daily.get("precipitation_sum",   [None])[0],
+            "wind_speed":    daily.get("windspeed_10m_max",   [None])[0],
+        }
+    except Exception as e:
+        raise HTTPException(status_code=503, detail=f"Erreur météo : {str(e)}")
+
+
+@app.get("/api/upcoming-races")
+def get_upcoming_races():
+    """Retourne les courses à venir de la saison 2026"""
+    if not os.path.exists(CALENDAR_PATH):
+        raise HTTPException(status_code=404, detail="Calendrier 2026 introuvable")
+
+    with open(CALENDAR_PATH) as f:
+        races = json_lib.load(f)
+
+    from datetime import date
+    today = date.today().isoformat()
+    upcoming = [r for r in races if r["date"] > today]
+
+    return {"season": 2026, "races": upcoming}
 
 
 if __name__ == "__main__":
