@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+import base64
+import io
 import joblib
 import pandas as pd
 import os
@@ -32,11 +34,19 @@ df_constructor_standings = pd.read_csv(os.path.join(DATA_DIR, "constructor_stand
 
 # --- Chargement du modèle et des features ---
 # MODEL_PATH = os.path.join(DATA_DIR, "model.pkl")
-MODEL_PATH = os.path.join(DATA_DIR, "model.joblib")
+# MODEL_PATH = os.path.join(DATA_DIR, "model.joblib")
+MODEL_B64_PATH = os.path.join(DATA_DIR, "model_b64.txt")
 FEATURES_PATH = os.path.join(DATA_DIR, "model_features.json")
 CALENDAR_PATH = os.path.join(DATA_DIR, "calendar_2026.json")
 
-model = joblib.load(MODEL_PATH) if os.path.exists(MODEL_PATH) else None
+if os.path.exists(MODEL_B64_PATH):
+    with open(MODEL_B64_PATH, "r") as f:
+        model_b64 = f.read()
+    model = joblib.load(io.BytesIO(base64.b64decode(model_b64)))
+    print("✅ Modèle chargé depuis base64 !")
+else:
+    model = None
+    print("⚠️ model_b64.txt introuvable")
 
 with open(FEATURES_PATH) as f:
     MODEL_FEATURES = json_lib.load(f)
