@@ -24,9 +24,6 @@ function App() {
             F1
           </span>
           <h1 className="text-xl font-semibold">Dashboard</h1>
-          <span className="ml-auto text-sm text-muted-foreground">
-            Saison 2024
-          </span>
         </div>
       </header>
 
