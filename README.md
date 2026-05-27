@@ -1,3 +1,12 @@
+---
+title: F1 Data Project
+emoji: 🏎️
+colorFrom: red
+colorTo: gray
+sdk: docker
+pinned: false
+---
+
 # F1 Data Project 🏎️
 
 Dashboard de prédiction des résultats de courses de Formule 1, 
