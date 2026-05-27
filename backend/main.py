@@ -56,11 +56,6 @@ class PredictionInput(BaseModel):
 
 # --- Routes ---
 
-@app.get("/")
-def root():
-    return {"message": "F1 Predictor API 🏎️", "status": "ok"}
-
-
 @app.get("/standings/drivers")
 def get_driver_standings(season: int = 2024):
     """Classement pilotes pour une saison donnée"""
