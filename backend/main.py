@@ -229,12 +229,14 @@ FRONTEND_DIST = os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"
 if os.path.exists(FRONTEND_DIST):
     app.mount("/assets", StaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")), name="assets")
 
-    @app.get("/{full_path:path}")
-    def serve_frontend(full_path: str):
-        """Renvoie index.html pour toutes les routes non-API (React Router)"""
-        return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))
+@app.get("/")
+def serve_index():
+    index_path = os.path.join(FRONTEND_DIST, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return {"message": "F1 Predictor API 🏎️", "status": "ok"}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=7860, reload=False)
-
+@app.get("/{full_path:path}")
+def serve_frontend(full_path: str):
+    index_path = os.path.join(FRONTEND_DIST, "index.html")
+    return FileResponse(index_path)
